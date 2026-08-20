@@ -3,8 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Nuestra Celebración</title>
+  
+  <!-- Evita que buscadores indexen o muestren la web en resultados -->
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  
+  <title>Mi Bautismo - Invitación</title>
   <link rel="stylesheet" href="style.css">
+  
   <!-- Fuentes de Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,147 +17,169 @@
 </head>
 <body>
 
-  <!-- Hero / Portada -->
-  <header class="hero">
-    <div class="hero-bg"></div>
-    <div class="overlay"></div>
-
-    <svg class="laurel laurel-left" viewBox="0 0 120 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path class="laurel-path" d="M100 10 C 60 40, 40 90, 45 130 C 50 170, 70 210, 60 250" fill="none"/>
-      <g class="laurel-leaves">
-        <path d="M96 30 C 80 26, 68 34, 66 46 C 80 48, 94 42, 96 30 Z"/>
-        <path d="M82 62 C 66 60, 56 70, 56 82 C 70 82, 82 74, 82 62 Z"/>
-        <path d="M68 96 C 52 96, 44 108, 46 120 C 60 118, 70 108, 68 96 Z"/>
-        <path d="M60 132 C 44 134, 38 146, 42 158 C 56 154, 64 144, 60 132 Z"/>
-        <path d="M56 168 C 40 172, 36 184, 42 195 C 55 190, 62 180, 56 168 Z"/>
-        <path d="M56 204 C 42 210, 40 222, 47 232 C 59 226, 64 216, 56 204 Z"/>
-      </g>
-    </svg>
-    <svg class="laurel laurel-right" viewBox="0 0 120 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path class="laurel-path" d="M20 10 C 60 40, 80 90, 75 130 C 70 170, 50 210, 60 250" fill="none"/>
-      <g class="laurel-leaves">
-        <path d="M24 30 C 40 26, 52 34, 54 46 C 40 48, 26 42, 24 30 Z"/>
-        <path d="M38 62 C 54 60, 64 70, 64 82 C 50 82, 38 74, 38 62 Z"/>
-        <path d="M52 96 C 68 96, 76 108, 74 120 C 60 118, 50 108, 52 96 Z"/>
-        <path d="M60 132 C 76 134, 82 146, 78 158 C 64 154, 56 144, 60 132 Z"/>
-        <path d="M64 168 C 80 172, 84 184, 78 195 C 65 190, 58 180, 64 168 Z"/>
-        <path d="M64 204 C 78 210, 80 222, 73 232 C 61 226, 56 216, 64 204 Z"/>
-      </g>
-    </svg>
-
-    <div class="hero-content">
-      <p class="tagline reveal-item" style="--d:0">✦ Estás invitado ✦</p>
-      <h1 class="reveal-item" style="--d:1">Nuestra<br>Celebración</h1>
-      <p class="fecha-texto reveal-item" style="--d:2">Sábado, 15 de Noviembre de 2026</p>
-      <a href="#rsvp" class="scroll-cue reveal-item" style="--d:3" aria-label="Bajar a la confirmación">
-        <span></span>
-      </a>
-    </div>
-  </header>
-
-  <main class="container">
-
-    <!-- Cuenta Regresiva -->
-    <section class="card countdown-section reveal" id="countdown">
-      <p class="eyebrow">La cuenta ya empezó</p>
-      <h2>Faltan</h2>
-      <div class="countdown-grid">
-        <div class="time-box"><span id="days">00</span><p>Días</p></div>
-        <div class="time-box"><span id="hours">00</span><p>Hs</p></div>
-        <div class="time-box"><span id="minutes">00</span><p>Min</p></div>
-        <div class="time-box"><span id="seconds">00</span><p>Seg</p></div>
-      </div>
-    </section>
-
-    <div class="divider" aria-hidden="true">
-      <svg viewBox="0 0 200 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 12 C 40 12, 40 2, 70 2 S 100 22, 130 22 S 160 2, 200 12" fill="none"/>
-        <circle cx="100" cy="12" r="3"/>
-      </svg>
-    </div>
-
-    <!-- Detalles del evento -->
-    <section class="card details-section reveal">
-      <p class="eyebrow">¿Cuándo y dónde?</p>
-      <h2>Los Detalles</h2>
-      <div class="detail-row">
-        <span class="detail-icon">🕘</span>
-        <div>
-          <strong>Hora</strong>
-          <p>21:00 hs</p>
-        </div>
-      </div>
-      <div class="detail-row">
-        <span class="detail-icon">📍</span>
-        <div>
-          <strong>Lugar</strong>
-          <p>Salón La Arboleda</p>
-        </div>
-      </div>
-      <div class="detail-row">
-        <span class="detail-icon">🗺️</span>
-        <div>
-          <strong>Dirección</strong>
-          <p>Av. Principal 1234</p>
-        </div>
-      </div>
-      <!-- Cambia el enlace por tu ubicación real de Google Maps -->
-      <a href="https://maps.google.com" target="_blank" class="btn-secondary">Ver en Google Maps</a>
-    </section>
-
-    <div class="divider" aria-hidden="true">
-      <svg viewBox="0 0 200 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 12 C 40 12, 40 2, 70 2 S 100 22, 130 22 S 160 2, 200 12" fill="none"/>
-        <circle cx="100" cy="12" r="3"/>
-      </svg>
-    </div>
-
-    <!-- Formulario RSVP -->
-    <section class="card rsvp-section reveal" id="rsvp">
-      <p class="eyebrow">Te esperamos</p>
-      <h2>Confirmar Asistencia</h2>
-      <p class="subtitle">Por favor confirma antes del 1 de Noviembre</p>
-
-      <form id="rsvpForm">
+  <!-- PANTALLA DE ACCESO / BLOQUEO POR PIN -->
+  <div id="gatekeeper" class="gate-overlay">
+    <div class="card gate-card">
+      <span class="gate-icon">✦</span>
+      <p class="eyebrow">Acceso Exclusivo</p>
+      <h2>Mi Bautismo</h2>
+      <p class="subtitle">Ingresa el código que te enviamos para ver los detalles:</p>
+      
+      <form id="passForm" onsubmit="event.preventDefault(); verificarAcceso();">
         <div class="form-group">
-          <label for="nombre">Nombre y Apellido *</label>
-          <input type="text" id="nombre" required placeholder="Ej: Juan Pérez">
+          <input type="password" id="passInput" placeholder="Código de acceso" required>
         </div>
-
-        <div class="form-group">
-          <label for="asistencia">¿Asistirás? *</label>
-          <select id="asistencia" required>
-            <option value="¡Sí, confirmo mi asistencia! 🎉">¡Sí, ahí estaré! 🎉</option>
-            <option value="Lamentablemente no podré asistir 😢">No podré asistir 😢</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="acompanantes">Acompañantes adicionales</label>
-          <input type="number" id="acompanantes" min="0" max="10" value="0">
-        </div>
-
-        <div class="form-group">
-          <label for="menu">Menú especial / Restricciones</label>
-          <input type="text" id="menu" placeholder="Ej: Celíaco, Vegano, Ninguno">
-        </div>
-
-        <button type="submit" class="btn-whatsapp">
-          <span>Confirmar por WhatsApp</span> 💬
-        </button>
+        <button type="submit" class="btn-primary">Ingresar</button>
       </form>
+      <p id="errorMsg" class="error-msg">Código incorrecto. Intenta de nuevo.</p>
+    </div>
+  </div>
 
-      <div id="successMsg" class="success-msg" hidden>
-        <span class="success-icon">✓</span>
-        <p>¡Gracias! Te estamos redirigiendo a WhatsApp…</p>
+  <!-- CONTENIDO PRIVADO (Oculto hasta validar el PIN) -->
+  <div id="contenidoPrivado" style="display: none;">
+    
+    <!-- Hero / Portada -->
+    <header class="hero">
+      <div class="hero-bg"></div>
+      <div class="overlay"></div>
+
+      <svg class="laurel laurel-left" viewBox="0 0 120 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path class="laurel-path" d="M100 10 C 60 40, 40 90, 45 130 C 50 170, 70 210, 60 250" fill="none"/>
+        <g class="laurel-leaves">
+          <path d="M96 30 C 80 26, 68 34, 66 46 C 80 48, 94 42, 96 30 Z"/>
+          <path d="M82 62 C 66 60, 56 70, 56 82 C 70 82, 82 74, 82 62 Z"/>
+          <path d="M68 96 C 52 96, 44 108, 46 120 C 60 118, 70 108, 68 96 Z"/>
+          <path d="M60 132 C 44 134, 38 146, 42 158 C 56 154, 64 144, 60 132 Z"/>
+          <path d="M56 168 C 40 172, 36 184, 42 195 C 55 190, 62 180, 56 168 Z"/>
+          <path d="M56 204 C 42 210, 40 222, 47 232 C 59 226, 64 216, 56 204 Z"/>
+        </g>
+      </svg>
+      <svg class="laurel laurel-right" viewBox="0 0 120 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path class="laurel-path" d="M20 10 C 60 40, 80 90, 75 130 C 70 170, 50 210, 60 250" fill="none"/>
+        <g class="laurel-leaves">
+          <path d="M24 30 C 40 26, 52 34, 54 46 C 40 48, 26 42, 24 30 Z"/>
+          <path d="M38 62 C 54 60, 64 70, 64 82 C 50 82, 38 74, 38 62 Z"/>
+          <path d="M52 96 C 68 96, 76 108, 74 120 C 60 118, 50 108, 52 96 Z"/>
+          <path d="M60 132 C 76 134, 82 146, 78 158 C 64 154, 56 144, 60 132 Z"/>
+          <path d="M64 168 C 80 172, 84 184, 78 195 C 65 190, 58 180, 64 168 Z"/>
+          <path d="M64 204 C 78 210, 80 222, 73 232 C 61 226, 56 216, 64 204 Z"/>
+        </g>
+      </svg>
+
+      <div class="hero-content">
+        <p class="tagline reveal-item" style="--d:0">✦ Estás invitado ✦</p>
+        <h1 class="reveal-item" style="--d:1">Mi<br>Bautismo</h1>
+        <p class="fecha-texto reveal-item" style="--d:2">Domingo, 6 de Septiembre de 2026</p>
+        <a href="#rsvp" class="scroll-cue reveal-item" style="--d:3" aria-label="Bajar a la confirmación">
+          <span></span>
+        </a>
       </div>
-    </section>
+    </header>
 
-  </main>
+    <main class="container">
 
-  <footer class="footer reveal">
-    <p>Con cariño, ¡no vemos la hora! ✦</p>
-  </footer>
+      <!-- Cuenta Regresiva -->
+      <section class="card countdown-section reveal" id="countdown">
+        <p class="eyebrow">La cuenta ya empezó</p>
+        <h2>Faltan</h2>
+        <div class="countdown-grid">
+          <div class="time-box"><span id="days">00</span><p>Días</p></div>
+          <div class="time-box"><span id="hours">00</span><p>Hs</p></div>
+          <div class="time-box"><span id="minutes">00</span><p>Min</p></div>
+          <div class="time-box"><span id="seconds">00</span><p>Seg</p></div>
+        </div>
+      </section>
+
+      <div class="divider" aria-hidden="true">
+        <svg viewBox="0 0 200 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 12 C 40 12, 40 2, 70 2 S 100 22, 130 22 S 160 2, 200 12" fill="none"/>
+          <circle cx="100" cy="12" r="3"/>
+        </svg>
+      </div>
+
+      <!-- Detalles del evento -->
+      <section class="card details-section reveal">
+        <p class="eyebrow">¿Cuándo y dónde?</p>
+        <h2>Los Detalles</h2>
+        <div class="detail-row">
+          <span class="detail-icon">🕘</span>
+          <div>
+            <strong>Hora</strong>
+            <p>9:00 hs</p>
+          </div>
+        </div>
+        <div class="detail-row">
+          <span class="detail-icon">📍</span>
+          <div>
+            <strong>Lugar</strong>
+            <p>Iglesia</p>
+          </div>
+        </div>
+        <div class="detail-row">
+          <span class="detail-icon">🗺️</span>
+          <div>
+            <strong>Dirección</strong>
+            <p>Av. Principal 1234</p>
+          </div>
+        </div>
+        <a href="https://maps.google.com" target="_blank" class="btn-secondary">Ver en Google Maps</a>
+      </section>
+
+      <div class="divider" aria-hidden="true">
+        <svg viewBox="0 0 200 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 12 C 40 12, 40 2, 70 2 S 100 22, 130 22 S 160 2, 200 12" fill="none"/>
+          <circle cx="100" cy="12" r="3"/>
+        </svg>
+      </div>
+
+      <!-- Formulario RSVP -->
+      <section class="card rsvp-section reveal" id="rsvp">
+        <p class="eyebrow">Te esperamos</p>
+        <h2>Confirmar Asistencia</h2>
+        <p class="subtitle">Por favor confirma antes del 3 de Septiembre</p>
+
+        <form id="rsvpForm">
+          <div class="form-group">
+            <label for="nombre">Nombre y Apellido *</label>
+            <input type="text" id="nombre" required placeholder="Ej: Juan Pérez">
+          </div>
+
+          <div class="form-group">
+            <label for="asistencia">¿Asistirás? *</label>
+            <select id="asistencia" required>
+              <option value="¡Sí, confirmo mi asistencia! 🎉">¡Sí, ahí estaré! 🎉</option>
+              <option value="Lamentablemente no podré asistir 😢">No podré asistir 😢</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="acompanantes">Acompañantes adicionales</label>
+            <input type="number" id="acompanantes" min="0" max="10" value="0">
+          </div>
+
+          <div class="form-group">
+            <label for="menu">Menú especial / Restricciones</label>
+            <input type="text" id="menu" placeholder="Ej: Celíaco, Vegano, Ninguno">
+          </div>
+
+          <button type="submit" class="btn-whatsapp">
+            <span>Confirmar por WhatsApp</span> 💬
+          </button>
+        </form>
+
+        <div id="successMsg" class="success-msg" hidden>
+          <span class="success-icon">✓</span>
+          <p>¡Gracias! Te estamos redirigiendo a WhatsApp…</p>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer reveal">
+      <p>Con cariño, ¡no vemos la hora! ✦</p>
+    </footer>
+
+  </div>
 
   <script src="script.js"></script>
 </body>
