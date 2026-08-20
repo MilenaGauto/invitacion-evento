@@ -1,50 +1,67 @@
 // ============================================
 // 1. CONFIGURACIÓN Y SEGURIDAD
 // ============================================
-// Clave para desbloquear la invitación
 const PIN_CORRECTO = "bautismo2026";
-
-// Número de WhatsApp ofuscado en Base64
 const T_ENCODED = "NTQ5MzQ4MjIzMDkxNA==";
-
-// Fecha del evento: Domingo 6 de Septiembre de 2026, 09:00 hs
 const FECHA_EVENTO = new Date("2026-09-06T09:00:00").getTime();
 
+// ============================================
+// 2. INICIALIZACIÓN SEGURA AL CARGAR LA PÁGINA
+// ============================================
+document.addEventListener("DOMContentLoaded", () => {
+  const gatekeeper = document.getElementById("gatekeeper");
+  const contenido = document.getElementById("contenidoPrivado");
+
+  // Si ya ingresó el PIN anteriormente en la misma pestaña
+  if (sessionStorage.getItem("acceso_invitacion") === "true") {
+    if (gatekeeper) gatekeeper.style.display = "none";
+    if (contenido) contenido.style.display = "block";
+    iniciarFuncionesPrincipales();
+  }
+
+  // Listener para el formulario de contraseña
+  const passForm = document.getElementById("passForm");
+  if (passForm) {
+    passForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      verificarAcceso();
+    });
+  }
+
+  // Listener para el formulario RSVP de WhatsApp
+  const rsvpForm = document.getElementById("rsvpForm");
+  if (rsvpForm) {
+    rsvpForm.addEventListener("submit", enviarWhatsApp);
+  }
+});
 
 // ============================================
-// 2. CONTROL DE ACCESO (PIN)
+// 3. CONTROL DE ACCESO (PIN)
 // ============================================
-function iniciarElementosInteractivos() {
-  actualizarCuentaRegresiva();
-  iniciarIntersectionObserver();
-}
-
 function verificarAcceso() {
-  const pin = document.getElementById("passInput").value.trim();
+  const pinInput = document.getElementById("passInput");
   const errorMsg = document.getElementById("errorMsg");
+  const gatekeeper = document.getElementById("gatekeeper");
+  const contenido = document.getElementById("contenidoPrivado");
 
-  if (pin === PIN_CORRECTO) {
-    document.getElementById("gatekeeper").style.display = "none";
-    document.getElementById("contenidoPrivado").style.display = "block";
+  if (pinInput && pinInput.value.trim() === PIN_CORRECTO) {
+    if (gatekeeper) gatekeeper.style.display = "none";
+    if (contenido) contenido.style.display = "block";
     sessionStorage.setItem("acceso_invitacion", "true");
     
-    // Inicia animaciones y cuenta regresiva al desbloquear
-    iniciarElementosInteractivos();
-  } else {
+    iniciarFuncionesPrincipales();
+  } else if (errorMsg) {
     errorMsg.style.display = "block";
   }
 }
 
-// Mantener sesión activa si ya ingresó el código en la misma pestaña
-if (sessionStorage.getItem("acceso_invitacion") === "true") {
-  document.getElementById("gatekeeper").style.display = "none";
-  document.getElementById("contenidoPrivado").style.display = "block";
-  iniciarElementosInteractivos();
+function iniciarFuncionesPrincipales() {
+  actualizarCuentaRegresiva();
+  iniciarIntersectionObserver();
 }
 
-
 // ============================================
-// 3. CUENTA REGRESIVA CON EFECTO ZOOM
+// 4. CUENTA REGRESIVA CON ANIMACIÓN TICK
 // ============================================
 let valoresAnteriores = { days: null, hours: null, minutes: null, seconds: null };
 
@@ -78,7 +95,7 @@ function setDigito(id, valor) {
   if (valoresAnteriores[id] !== valor) {
     el.innerText = texto;
     el.classList.remove('tick');
-    void el.offsetWidth; // Forzar reflow para reiniciar la animación CSS
+    void el.offsetWidth; // Forzar reflow
     el.classList.add('tick');
     valoresAnteriores[id] = valor;
   }
@@ -86,9 +103,8 @@ function setDigito(id, valor) {
 
 setInterval(actualizarCuentaRegresiva, 1000);
 
-
 // ============================================
-// 4. ANIMACIONES AL SCROLL (IntersectionObserver)
+// 5. ANIMACIONES AL HACER SCROLL (IntersectionObserver)
 // ============================================
 function iniciarIntersectionObserver() {
   const elementosReveal = document.querySelectorAll('.reveal');
@@ -101,25 +117,27 @@ function iniciarIntersectionObserver() {
       }
     });
   }, {
-    threshold: 0.15,
-    rootMargin: '0px 0px -40px 0px'
+    threshold: 0.1,
+    rootMargin: '0px 0px -20px 0px'
   });
 
-  elementosReveal.forEach((el) => observador.observe(el));
+  elementosReveal.forEach((el) => {
+    // Si el elemento ya está visible en pantalla al cargar, mostrarlo de inmediato
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight) {
+      el.classList.add('in-view');
+    }
+    observador.observe(el);
+  });
 }
 
-
 // ============================================
-// 5. ENVÍO A WHATSAPP
+// 6. ENVÍO A WHATSAPP
 // ============================================
-const form = document.getElementById('rsvpForm');
-const successMsg = document.getElementById('successMsg');
-
-form.addEventListener('submit', function (e) {
+function enviarWhatsApp(e) {
   e.preventDefault();
 
   const telefonoReal = atob(T_ENCODED);
-
   const nombre = document.getElementById('nombre').value.trim();
   const asistencia = document.getElementById('asistencia').value;
   const acompanantes = document.getElementById('acompanantes').value;
@@ -134,15 +152,16 @@ form.addEventListener('submit', function (e) {
 🍽️ *Menú especial:* ${menu}
 ---------------------------------`;
 
-  const urlWhatsApp = `https://wa.me/${3482230914}?text=${encodeURIComponent(mensaje)}`;
+  const urlWhatsApp = `https://wa.me/${telefonoReal}?text=${encodeURIComponent(mensaje)}`;
+  const boton = document.querySelector('.btn-whatsapp');
+  const form = document.getElementById('rsvpForm');
+  const successMsg = document.getElementById('successMsg');
 
-  const boton = form.querySelector('.btn-whatsapp');
-  boton.classList.add('sending');
-
-  form.hidden = true;
-  successMsg.hidden = false;
+  if (boton) boton.classList.add('sending');
+  if (form) form.hidden = true;
+  if (successMsg) successMsg.hidden = false;
 
   setTimeout(() => {
     window.open(urlWhatsApp, '_blank');
-  }, 700);
-});
+  }, 600);
+}
