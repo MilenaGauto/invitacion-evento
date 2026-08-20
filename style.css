@@ -32,6 +32,62 @@ body {
   overflow-x: hidden;
 }
 
+/* ============ PANTALLA DE BLOQUEO POR PIN ============ */
+.gate-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 9999;
+}
+
+.gate-card {
+  max-width: 380px;
+  width: 100%;
+}
+
+.gate-icon {
+  font-size: 2rem;
+  color: var(--gold);
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.error-msg {
+  color: #c0392b;
+  font-size: 0.85rem;
+  margin-top: 12px;
+  display: none;
+  font-weight: 500;
+}
+
+.btn-primary {
+  width: 100%;
+  background-color: var(--gold);
+  color: var(--white);
+  border: none;
+  padding: 13px;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(177, 136, 79, 0.25);
+  transition: transform 0.2s var(--ease), background-color 0.2s var(--ease);
+}
+
+.btn-primary:hover {
+  background-color: #9d7742;
+  transform: translateY(-2px);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
 /* ============ HERO ============ */
 .hero {
   position: relative;
@@ -224,7 +280,7 @@ body {
   margin-bottom: 22px;
 }
 
-/* Divisor decorativo entre tarjetas */
+/* Divisor decorativo */
 .divider {
   display: flex;
   justify-content: center;
@@ -454,7 +510,7 @@ input:focus, select:focus {
   .hero-bg { animation: none; }
 }
 
-/* ============ AJUSTES MOBILE FINOS ============ */
+/* ============ AJUSTES MOBILE ============ */
 @media (max-width: 420px) {
   .laurel { width: 46px; opacity: 0.6; }
   .card { padding: 28px 20px; }
