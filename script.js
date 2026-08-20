@@ -6,20 +6,20 @@ const T_ENCODED = "NTQ5MzQ4MjIzMDkxNA==";
 const FECHA_EVENTO = new Date("2026-09-06T09:00:00").getTime();
 
 // ============================================
-// 2. INICIALIZACIÓN SEGURA AL CARGAR LA PÁGINA
+// 2. INICIALIZACIÓN
 // ============================================
 document.addEventListener("DOMContentLoaded", () => {
   const gatekeeper = document.getElementById("gatekeeper");
   const contenido = document.getElementById("contenidoPrivado");
 
-  // Si ya ingresó el PIN anteriormente en la misma pestaña
+  // Si ya ingresó el PIN previamente
   if (sessionStorage.getItem("acceso_invitacion") === "true") {
     if (gatekeeper) gatekeeper.style.display = "none";
     if (contenido) contenido.style.display = "block";
-    iniciarFuncionesPrincipales();
+    mostrarTodoYComenzar();
   }
 
-  // Listener para el formulario de contraseña
+  // Evento formulario PIN
   const passForm = document.getElementById("passForm");
   if (passForm) {
     passForm.addEventListener("submit", (e) => {
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Listener para el formulario RSVP de WhatsApp
+  // Evento formulario RSVP
   const rsvpForm = document.getElementById("rsvpForm");
   if (rsvpForm) {
     rsvpForm.addEventListener("submit", enviarWhatsApp);
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ============================================
-// 3. CONTROL DE ACCESO (PIN)
+// 3. VALIDACIÓN DE PIN
 // ============================================
 function verificarAcceso() {
   const pinInput = document.getElementById("passInput");
@@ -49,19 +49,24 @@ function verificarAcceso() {
     if (contenido) contenido.style.display = "block";
     sessionStorage.setItem("acceso_invitacion", "true");
     
-    iniciarFuncionesPrincipales();
+    mostrarTodoYComenzar();
   } else if (errorMsg) {
     errorMsg.style.display = "block";
   }
 }
 
-function iniciarFuncionesPrincipales() {
+function mostrarTodoYComenzar() {
   actualizarCuentaRegresiva();
-  iniciarIntersectionObserver();
+
+  // Forzar que todas las tarjetas se hagan visibles sin depender del scroll
+  const elementosReveal = document.querySelectorAll('.reveal');
+  elementosReveal.forEach((el) => {
+    el.classList.add('in-view');
+  });
 }
 
 // ============================================
-// 4. CUENTA REGRESIVA CON ANIMACIÓN TICK
+// 4. CUENTA REGRESIVA
 // ============================================
 let valoresAnteriores = { days: null, hours: null, minutes: null, seconds: null };
 
@@ -95,7 +100,7 @@ function setDigito(id, valor) {
   if (valoresAnteriores[id] !== valor) {
     el.innerText = texto;
     el.classList.remove('tick');
-    void el.offsetWidth; // Forzar reflow
+    void el.offsetWidth;
     el.classList.add('tick');
     valoresAnteriores[id] = valor;
   }
@@ -104,35 +109,7 @@ function setDigito(id, valor) {
 setInterval(actualizarCuentaRegresiva, 1000);
 
 // ============================================
-// 5. ANIMACIONES AL HACER SCROLL (IntersectionObserver)
-// ============================================
-function iniciarIntersectionObserver() {
-  const elementosReveal = document.querySelectorAll('.reveal');
-
-  const observador = new IntersectionObserver((entradas) => {
-    entradas.forEach((entrada) => {
-      if (entrada.isIntersecting) {
-        entrada.target.classList.add('in-view');
-        observador.unobserve(entrada.target);
-      }
-    });
-  }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -20px 0px'
-  });
-
-  elementosReveal.forEach((el) => {
-    // Si el elemento ya está visible en pantalla al cargar, mostrarlo de inmediato
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight) {
-      el.classList.add('in-view');
-    }
-    observador.observe(el);
-  });
-}
-
-// ============================================
-// 6. ENVÍO A WHATSAPP
+// 5. ENVÍO POR WHATSAPP
 // ============================================
 function enviarWhatsApp(e) {
   e.preventDefault();
@@ -153,11 +130,9 @@ function enviarWhatsApp(e) {
 ---------------------------------`;
 
   const urlWhatsApp = `https://wa.me/${telefonoReal}?text=${encodeURIComponent(mensaje)}`;
-  const boton = document.querySelector('.btn-whatsapp');
   const form = document.getElementById('rsvpForm');
   const successMsg = document.getElementById('successMsg');
 
-  if (boton) boton.classList.add('sending');
   if (form) form.hidden = true;
   if (successMsg) successMsg.hidden = false;
 
