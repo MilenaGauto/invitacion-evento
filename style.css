@@ -104,7 +104,7 @@ body {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=80') center/cover;
+  background: url('https://lh3.googleusercontent.com/d/1ez3hXO8TbYdeBIPZf3sORqAVplKCOjjC') center/cover;
   animation: kenburns 22s ease-in-out infinite alternate;
   z-index: 0;
 }
